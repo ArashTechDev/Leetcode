@@ -1,0 +1,40 @@
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        attachList = []     # list to store -ve values
+        returnList = []
+        i = 0
+        
+        while i < len(nums):
+            if nums[i] == 0:
+                returnList.append(0)
+                i += 1
+                continue
+            
+            result = nums[i] * nums[i]
+            
+            if nums[i] < 0:
+                attachList.append(result)
+                i += 1
+                continue
+
+            if nums[i] > 0:
+                if not attachList:
+                    for x in range(i, len(nums)):
+                        returnList.append(nums[x]*nums[x])
+                    return returnList
+
+                while attachList and result > attachList[-1]:
+                    returnList.append(attachList.pop())
+                
+                if attachList and result == attachList[-1]:
+                    returnList.append(attachList.pop())
+                    returnList.append(result)
+                    i += 1
+                else:
+                    returnList.append(result)
+                    i += 1
+
+        while attachList:
+            returnList.append(attachList.pop())
+        
+        return returnList
