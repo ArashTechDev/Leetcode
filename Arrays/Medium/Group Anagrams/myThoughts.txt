@@ -1,0 +1,8 @@
+I tried to do this question on my own, got O(m*nlogn) but failed to get O(m*n). I then had to lookup neetcode and understood the required trick. Solving it using sort was easy but it was not the optimal solution. 
+
+So the way neetcode helped me learn is by assigning a number to each alphabet and update the occurence of it accordingly. So basically we take 26 integers (a-z) and then look up a char
+in the word and then update that integer by 1. After reading the word, we are left with 26 variables and their unique combination is unique to each anagram.
+
+For ex, man would have 10000000000011000000000000, and its anagrams (eg, nam) will have the same list of integers
+
+We then put these into a hashMap as keys(convert these lists to tuple before inserting) with value of the word. As we go through a list of strs, anagrams will start grouping at their unique signatures. 
